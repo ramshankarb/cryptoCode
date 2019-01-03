@@ -1,0 +1,43 @@
+<ngx-toasta></ngx-toasta>
+<div class="container">
+<dx-range-selector 
+id="range-selector"
+title="Filter CryptoCurrency value by price"
+[dataSource]="source"
+dataSourceField="price"
+(onValueChanged)="onValueChanged($event)">
+<dxo-margin [top]="20"></dxo-margin>
+<dxo-size [height]="140"></dxo-size>
+<dxo-scale 
+    [tickInterval]="1"
+    [minorTickInterval]="1">
+    <dxo-label format="decimal"></dxo-label>
+</dxo-scale>
+<dxo-behavior callValueChanged="onMoving"></dxo-behavior>
+</dx-range-selector>
+
+  <table class="table" *ngIf="source">
+    <tr class="row">
+      <th class="col">Select</th>
+      <!-- <th class="col clickable" (click)=sortById(source)>ID</th> -->
+      <th class="col clickable" (click)=sortByName(source)><i class="fa fa-arrows-v" aria-hidden="true"></i>
+        Name</th>
+      <th class="col clickable" (click)=sortByMarket(source)><i class="fa fa-arrows-v" aria-hidden="true"></i> Market Cap</th>
+      <th class="col clickable" (click)=sortByPrice(source)><i class="fa fa-arrows-v" aria-hidden="true"></i> Current price</th>
+      <th class="col notclickable">Favourites</th>
+    </tr>
+    <div class="btn btn-primary" [routerLink]="['/compare']">compare</div>
+    <tr id="show" class="row" *ngFor="let res of selectedSource | paginate : {itemsPerPage: 10, currentPage: p }">
+      <td class="col">
+        <input type="checkbox"/>
+      </td>
+      <!-- <td class="col clickable"  [routerLink]="['/price',res.id]">{{res.id}}</td> -->
+      <td class="col clickable"  [routerLink]="['/price',res.id]">{{res.name}}</td>
+      <td class="col clickable"  [routerLink]="['/price',res.id]">{{res.marketCap | currency}}</td>
+      <td class="col clickable"  [routerLink]="['/price',res.id]">{{res.price | currency}}</td>
+      <td class="col btn btn-primary"  (click)="showSuccess(res)" >Mark</td>
+      
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div *ngIf="cookies?.length>0;else noList">
+  <table class="table">
+    <br><br>
+    <h5>Your watchlist</h5>
+    <tr class="row">
+      <th class="col">ID</th>
+      <th class="col">Name</th>
+      <th class="col">Market Cap</th>
+      <th class="col">Current price</th>
+      <th class="col">Favourites</th>
+    </tr>
+    <tr class="row" *ngFor="let cookie of cookies" >
+      <th class="col">{{cookie.id}}</th>
+      <th class="col">{{cookie.name}}</th>
+      <th class="col">{{cookie.marketCap}}</th>
+      <th class="col">{{cookie.price}}</th>
+      <th class="col btn btn-warning" (click)=remove(cookie.id)>remove</th>
+    </tr>
+  </table>
+</div>
+<ng-template #noList>
+  <br><br>
+  <h6>No Favourites <b>Mark</b> to view as Favourites</h6>
+</ng-template>
+</div>

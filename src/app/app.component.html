@@ -1,0 +1,18 @@
+<body><header>
+
+  <div class="container-fluid header jumbotron">
+    <h4>Welcome to {{title | uppercase}} !</h4>
+  </div>
+</header>
+<div class=container>
+<ul class="nav nav-tabs " id="myTab">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" [routerLink]="['/list']">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" [routerLink]="['/favourites']">Favourites</a>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
+</body>
